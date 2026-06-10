@@ -1,3 +1,8 @@
+import sys
+import os
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 from validation import (
     validate_title,
     validate_description,
@@ -6,7 +11,6 @@ from validation import (
 
 
 def add_task(tasks, title, description, due_date):
-    """Add a new task to the tasks list."""
     validate_title(title)
     validate_description(description)
     validate_due_date(due_date)
@@ -22,7 +26,6 @@ def add_task(tasks, title, description, due_date):
 
 
 def mark_complete(tasks, task_index):
-    """Mark a task as complete by its 1-based index."""
     if task_index < 1 or task_index > len(tasks):
         raise ValueError("Invalid task index.")
     tasks[task_index - 1]["completed"] = True
@@ -30,7 +33,6 @@ def mark_complete(tasks, task_index):
 
 
 def view_pending_tasks(tasks):
-    """Print all pending (incomplete) tasks."""
     pending = [t for t in tasks if not t["completed"]]
     if len(pending) == 0:
         return
@@ -42,7 +44,6 @@ def view_pending_tasks(tasks):
 
 
 def calculate_progress(tasks):
-    """Return the percentage of completed tasks."""
     if len(tasks) == 0:
         return 0.0
     completed = sum(1 for t in tasks if t["completed"])
