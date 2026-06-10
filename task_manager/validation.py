@@ -13,7 +13,6 @@ def validate_description(description):
 def validate_due_date(due_date):
     if not isinstance(due_date, str) or len(due_date) == 0:
         raise ValueError("Due date cannot be empty.")
-    # Basic format check YYYY-MM-DD
     parts = due_date.split("-")
     if len(parts) != 3:
         raise ValueError("Due date must be in YYYY-MM-DD format.")
